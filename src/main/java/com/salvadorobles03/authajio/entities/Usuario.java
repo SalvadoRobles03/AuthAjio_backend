@@ -1,7 +1,6 @@
 package com.salvadorobles03.authajio.entities;
 
 import jakarta.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "Usuarios")
@@ -13,12 +12,8 @@ public class Usuario {
 
   private String nombre;
 
-  @ManyToMany(mappedBy = "usuarios")
-  private Set<Cuenta> cuentas;
-
-  public Usuario(String nombre, Set<Cuenta> cuentas) {
+  public Usuario(String nombre) {
     this.nombre = nombre;
-    this.cuentas = cuentas;
   }
 
   public Usuario() {}
@@ -37,13 +32,5 @@ public class Usuario {
 
   public void setNombre(String nombre) {
     this.nombre = nombre;
-  }
-
-  public Set<Cuenta> getCuentas() {
-    return cuentas;
-  }
-
-  public void setCuentas(Set<Cuenta> cuentas) {
-    this.cuentas = cuentas;
   }
 }
