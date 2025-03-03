@@ -3,6 +3,8 @@ package com.salvadorobles03.authajio.entities;
 import jakarta.persistence.*;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Cuentas")
 public class Cuenta {
@@ -23,11 +25,8 @@ public class Cuenta {
   @JoinColumn(name = "id_banco")
   private Banco banco;
 
-  @ManyToMany
-  @JoinTable(
-      name = "Usuario_Cuenta",
-      joinColumns = @JoinColumn(name = "id_usuario"),
-      inverseJoinColumns = @JoinColumn(name = "id_cuenta"))
+  @ManyToMany(mappedBy = "cuentas")
+  @JsonIgnore
   private Set<Usuario> usuarios;
 
   public Cuenta(

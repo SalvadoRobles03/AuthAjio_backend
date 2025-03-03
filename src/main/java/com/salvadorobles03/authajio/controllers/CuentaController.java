@@ -3,6 +3,8 @@ package com.salvadorobles03.authajio.controllers;
 import com.salvadorobles03.authajio.entities.Cuenta;
 import com.salvadorobles03.authajio.services.CuentaService;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cuentas")
 public class CuentaController {
 
-  @Autowired CuentaService cuentaService;
+  @Autowired
+  CuentaService cuentaService;
 
   @GetMapping(value = "", produces = "application/json")
   public ResponseEntity<List<Cuenta>> getAllCuentas() {
@@ -28,6 +31,11 @@ public class CuentaController {
   @GetMapping(value = "/{id}", produces = "application/json")
   public ResponseEntity<Cuenta> getCuentaById(@PathVariable Integer id) {
     return ResponseEntity.ok(cuentaService.getCuentaById(id).get());
+  }
+
+  @GetMapping(value = "/usuario/{usuarioId}", produces = "application/json")
+  public ResponseEntity<Set<Cuenta>> getCuentasByUsuarioId(@PathVariable Integer usuarioId) {
+    return ResponseEntity.ok(cuentaService.getCuentasByUsuarioId(usuarioId));
   }
 
   @PostMapping(value = "", produces = "application/json")
