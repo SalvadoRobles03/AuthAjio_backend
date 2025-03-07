@@ -13,5 +13,5 @@ RUN mvn install -U
 # Exponer el puerto (necesario para Cloud Run)
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación usando Maven
-CMD ["mvn", "spring-boot:run"]
+# Comando para ejecutar la aplicación usando Maven con VM arguments
+CMD ["mvn", "spring-boot:run", "-Dspring-boot.run.profiles=prod"]
